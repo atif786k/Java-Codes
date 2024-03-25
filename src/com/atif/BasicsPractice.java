@@ -1,5 +1,6 @@
 package com.atif;
 
+import java.lang.reflect.Array;
 import java.util.*;
 
 public class BasicsPractice {
@@ -49,6 +50,19 @@ public class BasicsPractice {
             sum += i;
         }
         System.out.println("Sum of n natural number is : " + sum);
+    }
+
+    public int removeDuplicates(int[] nums) {
+        ArrayList<Integer> arr = new ArrayList<Integer>();
+        for (int i = 0; i < nums.length - 1; i++) {
+            if (nums[i] != nums[i + 1]) {
+                arr.add(nums[i]);
+            }
+        }
+        arr.add(nums[nums.length - 1]);
+        int res = arr.size();
+        System.out.println(arr);
+        return res;
     }
 
     public static void main(String[] args) {
@@ -413,8 +427,44 @@ public class BasicsPractice {
 //        System.out.println(list);
 
 
-//            int []arr={12,345,2,6,7896};
-//        System.out.println(arr[1].);
+//
+
+        //Q-Two sum:--
+//        int []arr={1,2,3};
+//        int target=9;
+//        int []arr1={};
+//        int k=0;
+//        for (int i=0; i<arr.length; i++){
+//            for (int j=i+1; j<arr.length; j++){
+//                if(arr[i]+arr[j]==target){
+//                    System.out.println(i +","+ j);
+//                    return {i,j};
+//                }
+//            }
+//        }
+//        System.out.println(Arrays.toString(arr1));
+
+
+//        int[]nums={2,7,11,15};
+//        int []arr1=new int[2];
+//        int k=0;
+//        for(int i=0; i<nums.length-1; i++){
+//            for (int j=i+1; j<nums.length; j++){
+//                if(target==nums[i]+nums[j]){
+//                    arr1[k]=i;
+//                    k++;
+//                    arr1[k]=j;
+//                }
+//            }
+//        }
+//        System.out.println(Arrays.toString(arr1));
+
+
+//        Q-Remove duplicates from sorted array:--
+        int[] nums = {0, 0, 1, 1, 1, 2, 2, 3, 3, 4};
+        BasicsPractice bsp = new BasicsPractice();
+        System.out.println(bsp.removeDuplicates(nums));
+
 
     }
 }
