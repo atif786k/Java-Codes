@@ -393,7 +393,7 @@ public class BasicsPractice {
 //            System.out.println();
 //        }
 
-
+//        Q-Diagonal Matrix sum:--
 //        int[][] arr = {{1,1,1,1},
 //                {1,1,1,1},
 //                {1,1,1,1},
@@ -461,10 +461,51 @@ public class BasicsPractice {
 
 
 //        Q-Remove duplicates from sorted array:--
-        int[] nums = {0, 0, 1, 1, 1, 2, 2, 3, 3, 4};
-        BasicsPractice bsp = new BasicsPractice();
-        System.out.println(bsp.removeDuplicates(nums));
+//        int[] nums = {0, 0, 1, 1, 1, 2, 2, 3, 3, 4};
+//        BasicsPractice bsp = new BasicsPractice();
+//        System.out.println(bsp.removeDuplicates(nums));
+
+
+//        Q-Numbers with even numbers of digits:--
+//        int []arr={43,3,443,5555};
+//        int out=0;
+//        for(int i=0; i<arr.length; i++){
+//            String str=Integer.toString(arr[i]);
+//            int len=str.length();
+//            if (len %2==0){
+////                System.out.println("Number is of even length");
+//                out+=1;
+//            }
+//        }
+//        System.out.println(out);
+
+
+
+//        Q-Transpose the matrix:--
+//        int [][]matrix={{1,2,3},{4,5,6},{7,8,9}};
+//        int [][]resMatrix=new int[matrix[0].length][matrix.length];
+//        int newIndexI=0;
+//        int newIndexJ=0;
+//        for(int i=0; i<matrix.length;i++){
+//            for(int j=0; j<matrix[i].length; j++){
+//                resMatrix[newIndexI][newIndexJ]=matrix[i][j];
+//                newIndexI+=1;
+//            }
+//            newIndexI=0;
+//            newIndexJ+=1;
+//        }
+//        for(int i=0; i<resMatrix.length;i++){
+//            for(int j=0; j<resMatrix[i].length; j++){
+//                System.out.print("["+ resMatrix[i][j] +"]");
+//            }
+//            System.out.println(" ");
+//        }
+
+
 
 
     }
 }
+
+
+
