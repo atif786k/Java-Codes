@@ -480,7 +480,6 @@ public class BasicsPractice {
 //        System.out.println(out);
 
 
-
 //        Q-Transpose the matrix:--
 //        int [][]matrix={{1,2,3},{4,5,6},{7,8,9}};
 //        int [][]resMatrix=new int[matrix[0].length][matrix.length];
@@ -502,6 +501,53 @@ public class BasicsPractice {
 //        }
 
 
+//        Q-Add to Array-Form of Integer:--
+//        First approach runTime error k and num storing value exceeds its limit:--
+//        int[] num = {2,1,5};
+//        ArrayList<Integer> arr = new ArrayList<Integer>();
+//        int k = 806;
+//        String str = "";
+//        for (int i = 0; i < num.length; i++) {
+//            str += Integer.toString(num[i]);
+//
+//        }
+//        int sum = Integer.parseInt(str)+k;
+//        String res=Integer.toString(sum);
+//        for(int j=0; j<res.length(); j++){
+//            arr.add(Character.getNumericValue(res.charAt(j)));
+//        }
+//
+//        System.out.println(arr);
+
+
+//        Second approach :--
+//        int[] num = {2, 1, 5};
+//        ArrayList<Integer> arr = new ArrayList<Integer>();
+//        int k = 806;
+//        for (int i = num.length - 1; i >= 0; i--) {
+//            if (i == 0) {
+//                k += num[i];
+//                arr.add(k % 10);
+//                int a = num[i] + k;
+//                a /= 10;
+//                if (a > 0) {
+//                    arr.add(a);
+//                }
+//            } else {
+//                k += num[i];
+//                arr.add(k % 10);
+//                k /= 10;
+//            }
+//        }
+//        Collections.reverse(arr);
+//        System.out.println(arr);
+
+
+//        Q-Find N Unique Integers Sum up to Zero:--
+//        int n=5;
+//        int[] arr=new int[n];
+
+        // function to generate n numbers that sum upto zero
 
 
     }
