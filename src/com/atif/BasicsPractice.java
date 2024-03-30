@@ -543,6 +543,55 @@ public class BasicsPractice {
 //        System.out.println(arr);
 
 
+//        Q-Find the smallest positive integer in an array:--
+//        int []nums={2,1};
+//        Arrays.sort(nums);
+//        int small=1;
+//        for (int i=0; i<nums.length; i++){
+//            if (small==nums[i]){
+//                small+=1;
+//            }
+//        }
+//        System.out.println(small);
+
+
+//        Q-Max value of equation:--
+//        int [][]points={{-19,9},{-15,-19},{-5,-8}};
+////        ArrayList<Integer> res = new ArrayList<Integer>();
+//        int k=10;
+//        int maximum = Integer.MIN_VALUE;
+//        for(int i=0; i<points.length; i++){
+//            for(int j=i+1; j<points.length; j++){
+//                int diff=Math.abs(points[i][0]-points[j][0]);
+//                if (diff<=k){
+//                    int equ=points[i][1]+points[j][1]+diff;
+////                    res.add(equ);
+//                    if (maximum<equ){
+//                        maximum=equ;
+//                    }
+//                }
+//            }
+//        }
+//        System.out.println(maximum);
+//        System.out.println(Arrays.toString(res));
+//        System.out.println(Arrays.stream(res).max().getAsInt());
+
+
+
+//        Q-Lucky number in a matrix:--
+        int [][]matx={{1,10,4,2}, {9,3,8,7}, {15,16,17,12}};
+        ArrayList<Integer> luckyNum = new ArrayList<Integer>();
+        int x=0;
+        int y=0;
+        for(int i=0; i<matx.length; i++){
+            for (int j=0; j<matx[i].length; j++){
+                matx[x][y]<matx[i][j]
+            }
+        }
+        System.out.println(luckyNum);
+
+
+
 //        Q-Find N Unique Integers Sum up to Zero:--
 //        int n=5;
 //        int[] arr=new int[n];
