@@ -577,28 +577,67 @@ public class BasicsPractice {
 //        System.out.println(Arrays.stream(res).max().getAsInt());
 
 
-
 //        Q-Lucky number in a matrix:--
-        int [][]matx={{1,10,4,2}, {9,3,8,7}, {15,16,17,12}};
-        ArrayList<Integer> luckyNum = new ArrayList<Integer>();
-        int x=0;
-        int y=0;
-        for(int i=0; i<matx.length; i++){
-            for (int j=0; j<matx[i].length; j++){
-                matx[x][y]<matx[i][j]
+//        Not solved YET:--
+
+//        int [][]matx={{1,10,4,2}, {9,3,8,7}, {15,16,17,12}};
+//        ArrayList<Integer> luckyNum = new ArrayList<Integer>();
+//        int x=0;
+//        int y=0;
+////        int smallest=matx[x][y];
+//        int largest=0;
+//        for(int i=0; i<matx.length; i++){
+//            for(int j=0; j<matx[i].length-1; j++){
+//               if (matx[i][j]<matx[x][y]){
+//                   matx[x][y]=matx[i][j];
+//               }
+//            } x++; luckyNum.add(matx[x][y]);
+//        }
+//        System.out.println(luckyNum);
+//        System.out.println(Arrays.stream(matx[0]).min().getAsInt());
+
+
+//        Q-Reshape the matrix:--
+//        int[][] mat = {{1, 2}, {3, 4}};
+//        int r = 2;  //row
+//        int c = 4;  //column
+//        int[][] resMat = new int[r][c];
+//        int matRow = mat.length;
+//        int matCol = mat[0].length;
+//
+//        if (r * c == matRow * matCol) {
+//            System.out.println("we can proceeds further");
+//            int resRow = 0;
+//            int resCol = 0;
+////            for(int i=0; i<matRow; i++){
+//            int i = 0;
+//            while (i < matRow) {
+//                for (int j = 0; j < matCol; j++) {
+//                    resMat[resRow][resCol] = mat[i][j];
+//                    resCol += 1;
+//                    if (resCol == c) {
+//                        resCol = 0;
+//                        resRow += 1;
+//                    }
+//                }
+//                i += 1;
+//            }
+//            System.out.println(Arrays.deepToString(resMat));
+//        } else {
+//            System.out.println(Arrays.deepToString(mat));
+//        }
+
+
+//        Q-Plus one:--
+        int[] digits={1,2,3};
+        for (int i = digits.length -1; i >= 0; i--) {
+            if (digits[i] < 9) {
+                digits[i]++;
+                digits[1]=digits[i];
             }
+            digits[i] = 0;
         }
-        System.out.println(luckyNum);
-
-
-
-//        Q-Find N Unique Integers Sum up to Zero:--
-//        int n=5;
-//        int[] arr=new int[n];
-
-        // function to generate n numbers that sum upto zero
-
-
+        System.out.println(Arrays.toString(digits));
     }
 }
 
