@@ -1,7 +1,6 @@
 package com.atif;
-
-import java.lang.reflect.Array;
 import java.util.*;
+// Basics and Arrays questions :
 
 public class BasicsPractice {
     static void max_min(int arr[], int max, int min) {
@@ -629,15 +628,71 @@ public class BasicsPractice {
 
 
 //        Q-Plus one:--
-        int[] digits={1,2,3};
-        for (int i = digits.length -1; i >= 0; i--) {
-            if (digits[i] < 9) {
-                digits[i]++;
-                digits[1]=digits[i];
-            }
-            digits[i] = 0;
-        }
-        System.out.println(Arrays.toString(digits));
+//        int[] digits={1,2,3};
+//        for (int i = digits.length -1; i >= 0; i--) {
+//            if (digits[i] < 9) {
+//                digits[i]++;
+//                digits[1]=digits[i];
+//            }
+//            digits[i] = 0;
+//        }
+//        System.out.println(Arrays.toString(digits));
+
+
+//        Q-Product of Array Except Self:--
+//        int []nums={1,2,3,2};
+//        int n =nums.length;
+//        int []resNum=new int[nums.length];
+//        int sum=1;
+////        for(int i=0; i<nums.length; i++){
+////            for (int j=0; j<nums.length; j++){
+////                if (i!=j){
+////                    sum*=nums[j];
+////                }
+////            }
+////            resNum[i]=sum;
+////            sum=1;
+////        }  //Solved with this method but time error occurs:-
+
+
+//        Second method:--
+//        int[]left=new int[n];
+//        int[]right=new int[n];
+//        for (int i=0; i<n; i++){
+//            left[i]=nums[i-1]*
+//        }
+//        System.out.println(Arrays.toString(resNum));
+
+
+//        Q-Find First and Last Position of Element in Sorted Array:--
+//        int[] nums = {5,7,7,8,8,10};
+//        int target = 7;
+//        int []indexes=new int[2];
+//
+//        if(nums.length==0){
+//            indexes[0]=-1;
+//            indexes[1]=-1;
+//        }
+//
+//        for (int i = 0; i < nums.length; i++) {
+//            if (target==nums[i]) {
+//                indexes[0]=i;
+//                break;
+//            } else {
+//                indexes[0]=-1;
+//            }
+//        }
+//        for (int j = nums.length-1; j >= 0; j--) {
+//            if (target==nums[j]) {
+//                indexes[1]=j;
+//                break;
+//            } else {
+//                indexes[1]=-1;
+//            }
+//        }
+//        System.out.println(Arrays.toString(indexes));
+
+
     }
 }
 
