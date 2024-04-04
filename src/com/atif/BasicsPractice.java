@@ -1,4 +1,5 @@
 package com.atif;
+
 import java.util.*;
 // Basics and Arrays questions :
 
@@ -693,6 +694,58 @@ public class BasicsPractice {
 //        System.out.println(Arrays.toString(indexes));
 
 
+//        Q-Set matrix zeroes:--
+//        int[][] matx = {{0, 1, 2, 0}, {3, 4, 5, 2}, {1, 3, 1, 5}};
+//        ArrayList<Integer> rowArr = new ArrayList<Integer>();
+//        ArrayList<Integer> colArr = new ArrayList<Integer>();
+//
+//        //storing the indexes of the zeroes present in the array:
+//        for (int i = 0; i < matx.length; i++) {
+//            for (int j = 0; j < matx[i].length; j++) {
+//                if (matx[i][j] == 0) {
+//                    rowArr.add(i);
+//                    colArr.add(j);
+//                }
+//            }
+//        }
+//
+//        //puttting zero in places according to the stored indexes:
+//        for (int x = 0; x < rowArr.size(); x++) {
+//            for (int y = 0; y < matx[0].length; y++) {
+//                matx[rowArr.get(x)][y] = 0;
+//            }
+//        }
+//        for (int x = 0; x < colArr.size(); x++) {
+//            for (int y = 0; y < matx.length; y++) {
+//                matx[y][colArr.get(x)] = 0;
+//            }
+//        }
+//        System.out.println(Arrays.deepToString(matx));
+
+
+//        Q-Rotate array:--
+        int []num={1,2};
+        int k=3;
+        ArrayList<Integer> newArr = new ArrayList<Integer>();
+//        if (num.length>k){
+        for (int i=0; i<num.length-k; i++){
+            newArr.add(num[i]);
+        }
+        System.out.println(newArr);
+        int remain=num.length-k;
+        int newIndx=0;
+        for (int j=remain; j<num.length; j++){
+            num[newIndx]=num[j];
+            newIndx++;
+        }
+        System.out.println(Arrays.toString(num));
+        int x=0;
+        for (int l=k; l<num.length; l++){
+            num[l]=newArr.get(x);
+            x++;
+        }
+//        }
+        System.out.println(Arrays.toString(num));
     }
 }
 
