@@ -65,6 +65,30 @@ public class BasicsPractice {
         return res;
     }
 
+    public void rotateArray(int[] num, int k) {
+        ArrayList<Integer> newArr = new ArrayList<Integer>();
+        if (num.length >= k) {
+            for (int i = 0; i < num.length - k; i++) {
+                newArr.add(num[i]);
+            }
+            int remain = num.length - k;
+            int newIndx = 0;
+            for (int j = remain; j < num.length; j++) {
+                num[newIndx] = num[j];
+                newIndx++;
+            }
+            int x = 0;
+            for (int l = k; l < num.length; l++) {
+                num[l] = newArr.get(x);
+                x++;
+            }
+        } else if (num.length < k) {
+            k = k - num.length;
+            rotateArray(num, k);
+        }
+        System.out.println("Result : " + Arrays.toString(num));
+    }
+
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
 
@@ -724,28 +748,38 @@ public class BasicsPractice {
 
 
 //        Q-Rotate array:--
-        int []num={1,2};
-        int k=3;
-        ArrayList<Integer> newArr = new ArrayList<Integer>();
-//        if (num.length>k){
-        for (int i=0; i<num.length-k; i++){
-            newArr.add(num[i]);
-        }
-        System.out.println(newArr);
-        int remain=num.length-k;
-        int newIndx=0;
-        for (int j=remain; j<num.length; j++){
-            num[newIndx]=num[j];
-            newIndx++;
-        }
+//        int[] num = {-1,-100,3,99};
+//        int k = 2;
+//        BasicsPractice bcp = new BasicsPractice();
+//        bcp.rotateArray(num, k);
+
+//        Q-Sort Colors:--
+//        0=red;
+//        1=white;
+//        2=blue;
+        int []num={2,0,2,1,1,0};
+        Arrays.sort(num);
         System.out.println(Arrays.toString(num));
-        int x=0;
-        for (int l=k; l<num.length; l++){
-            num[l]=newArr.get(x);
-            x++;
+
+
+//        Q-House Robber:--
+        int []house={1,2};
+        int amountLeft=0;
+        int amountRight=0;
+        for(int i=0; i<house.length; i+=2){
+            amountLeft+=house[i];
         }
-//        }
-        System.out.println(Arrays.toString(num));
+        for (int j=house.length-1; j>=0; j-=2){
+            amountRight+=house[j];
+        }
+        if (amountLeft>amountRight){
+            System.out.println(amountLeft);
+        } else{
+            System.out.println(amountRight);
+        }
+
+
+
     }
 }
 
