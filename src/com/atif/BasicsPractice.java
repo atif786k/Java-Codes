@@ -757,29 +757,61 @@ public class BasicsPractice {
 //        0=red;
 //        1=white;
 //        2=blue;
-        int []num={2,0,2,1,1,0};
-        Arrays.sort(num);
-        System.out.println(Arrays.toString(num));
+//        int []num={2,0,2,1,1,0};
+//        Arrays.sort(num);
+//        System.out.println(Arrays.toString(num));
 
 
 //        Q-House Robber:--
-        int []house={1,2};
-        int amountLeft=0;
-        int amountRight=0;
-        for(int i=0; i<house.length; i+=2){
-            amountLeft+=house[i];
-        }
-        for (int j=house.length-1; j>=0; j-=2){
-            amountRight+=house[j];
-        }
-        if (amountLeft>amountRight){
-            System.out.println(amountLeft);
-        } else{
-            System.out.println(amountRight);
-        }
+//        int[] house = {1, 3, 1};
+//        int amountStore=0;
+//        int num = house.length;
+//        if (num % 2 == 0) {
+//            int amountLeft = 0;
+//            int amountRight = 0;
+//            for (int i = 0; i < house.length; i += 2) {
+//                amountLeft += house[i];
+//            }
+//            for (int j = house.length - 1; j >= 0; j -= 2) {
+//                amountRight += house[j];
+//            }
+//            if (amountLeft > amountRight) {
+//                System.out.println(amountLeft);
+//            } else {
+//                System.out.println(amountRight);
+//            }
+//        } else {
+//            int indexZero = 0;
+//            int indexZeroPlusOne = 0;
+//            for (int i = 0; i < house.length; i += 2) {
+//                indexZero += house[i];
+//            }
+//            for (int i = 1; i < house.length; i += 2) {
+//                indexZeroPlusOne += house[i];
+//            }
+//            if (indexZero > indexZeroPlusOne) {
+//                System.out.println(indexZero);
+//            } else {
+//                System.out.println(indexZeroPlusOne);
+//            }
+//        }
 
 
+//        Q-Maximum population year:--
+        int [][]logs={{1950,1961}, {1960,1971}, {1970,1981}, {1955, 1962}};
+        int []maxPop=new int[logs.length];
+        int maxNum=0;
+        int []maxNums=new int[logs.length];
 
+        for (int i=0; i<logs.length-1; i++){
+            for (int j=1; j<logs.length; j++){
+                if (logs[i][1]>logs[j][0]){
+                    maxPop[i]=logs[j][0];
+                }
+            }
+        }
+        System.out.println(Arrays.toString(maxPop));
+//        System.out.println(Arrays.toString(maxNums));
     }
 }
 
