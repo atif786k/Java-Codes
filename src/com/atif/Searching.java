@@ -80,6 +80,39 @@ public class Searching {
         return letters[start % letters.length];
     }
 
+    //    public int[] twoSumII(int[] numbers, int target) {
+//        int[] indicies = new int[2];
+//        for (int i = 0; i < numbers.length; i++) {
+//            for (int j = i+1; j < numbers.length; j++) {
+//                if (numbers[i] + numbers[j] == target && i != j) {
+//                    indicies[0] = i + 1;
+//                    indicies[1] = j + 1;
+//                }
+//            }
+//        }
+//        return indicies;
+//    }
+
+    //    Two Pointer algorithm :-
+    public int[] twoSumII(int[] numbers, int target) {
+        int[] indicies = new int[2];
+        int s = 0;
+        int e = numbers.length - 1;
+        while (s < e) {
+            int sum = numbers[s] + numbers[e];
+            if (sum == target) {
+                indicies[0] = s + 1;
+                indicies[1] = e + 1;
+                break;
+            } else if (sum > target) {
+                e -= 1;
+            } else {
+                s += 1;
+            }
+        }
+        return indicies;
+    }
+
 
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
@@ -95,9 +128,15 @@ public class Searching {
 //        System.out.println(ans);
 
 //        Q-Find smallest letter greater than target:-
-        char[] letters = {'c', 'f', 'j'};
-        char target = 'a';
-        int ans = sr.findingChar(letters, target);
-        System.out.println(ans);
+//        char[] letters = {'c', 'f', 'j'};
+//        char target = 'a';
+//        int ans = sr.findingChar(letters, target);
+//        System.out.println(ans);
+
+//        Q-Two Sum II:-
+        int[] numbers = {2, 3, 4};
+        int target = 6;
+        System.out.println(Arrays.toString(sr.twoSumII(numbers, target)));
+
     }
 }
