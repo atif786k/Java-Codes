@@ -157,20 +157,6 @@ public class Searching {
 //        return ans;
 //    }
 
-
-    public boolean canJump(int[] arr) {
-        int i = 0;
-        while (i < arr.length) {
-            int jumpNum = arr[i];
-            if (i < arr.length) {
-                i += jumpNum;
-            } else if (i == arr.length - 1) {
-                return true;
-            }
-        }
-        return false;
-    }
-
     public boolean checkIfExists(int[] arr) {
         for (int i = 0; i < arr.length; i++) {
             for (int j = 0; j < arr.length; j++) {
@@ -227,10 +213,6 @@ public class Searching {
 //        int[] arr = {0, 10, 1, 2, 3, 4, 50};
 //        System.out.println(sr.peakIndexMountainArray(arr));
 
-//        Q-Jump game :- ( not solved )
-//        int[] arr = {3, 2, 1, 0, 4};
-//        System.out.println(sr.canJump(arr));
-
 //        Q-check if N and it's double exists or not :-
 //        int[] arr = {10, 2, 5, 3};
 //        System.out.println(sr.checkIfExists(arr));
@@ -240,15 +222,39 @@ public class Searching {
 //        System.out.println(singleNonDuplicate(arr));
 
 //        Q-Searching in rotated sorted array :-
-        int[] arr = {3,1};
-        int target = 3;
-        int ans = searchingUsingPivot(arr, target);
-        System.out.println(ans);
+        int[] arr = {10, 11, 12, 0, 1, 2, 3};
+//        int target = 0;
+//        boolean ans = searchingUsingPivot(arr, target);
+//        System.out.println(ans);
+//        System.out.println(findPivotInDuplicate(arr));
+
+        System.out.println(findMinimumInRotatedArray(arr));
 
     }
 
-//    Searching in rotated sorted array :-
-    static int findPivot(int[] arr) {
+    static int findMinimumInRotatedArray(int[] arr) {
+        int start = 0;
+        int end = arr.length - 1;
+        while (start <= end) {
+            int mid = start + (end - start) / 2;
+            if (mid < end && arr[mid] > arr[mid + 1]) {
+                return arr[mid + 1];
+            } else if (mid > start && arr[mid] < arr[mid - 1]) {
+                return arr[mid];
+            } else if (start == end) {
+                return arr[start];
+            } else if (arr[start] < arr[mid] && arr[mid] < arr[end] || arr[start] < arr[end]) {
+                return arr[start];
+            } else if (arr[start] < arr[mid]) {
+                start = mid + 1;
+            } else {
+                end = mid - 1;
+            }
+        }
+        return -1;
+    }
+
+    static int findPivotInDuplicate(int[] arr) {
         int start = 0;
         int end = arr.length - 1;
         while (start <= end) {
@@ -257,16 +263,26 @@ public class Searching {
                 return mid;
             } else if (mid > start && arr[mid] < arr[mid - 1]) {
                 return mid - 1;
-            } else if (arr[mid] < arr[start]) {
-                end = mid - 1;
-            } else {
+            } else if (arr[start] == arr[mid] && arr[end] == arr[mid]) {
+                if (start < end && arr[start] < arr[start + 1]) {
+                    return start;
+                }
+                start += 1;
+                if (end > start && arr[end] < arr[end - 1]) {
+                    return end - 1;
+                }
+                end += 1;
+            } else if (arr[start] < arr[mid] || (arr[start] == arr[mid] && arr[mid] > arr[end])) {
                 start = mid + 1;
+            } else {
+                end = mid - 1;
             }
+
         }
         return -1;
     }
 
-    static int binarySearchUsingPivot(int start, int end, int[] arr, int target) {
+    static boolean binarySearchUsingPivot(int start, int end, int[] arr, int target) {
         while (start <= end) {
             int mid = start + (end - start) / 2;
             if (arr[mid] > target) {
@@ -274,23 +290,71 @@ public class Searching {
             } else if (arr[mid] < target) {
                 start = mid + 1;
             } else if (arr[mid] == target) {
-                return mid;
+                return true;
             }
         }
-        return -1;
+        return false;
     }
 
-    static int searchingUsingPivot(int[] arr, int target){
-        int pivot = findPivot(arr);
-        if (pivot == -1){
+    static boolean searchingUsingPivot(int[] arr, int target) {
+        int pivot = findPivotInDuplicate(arr);
+        if (pivot == -1) {
             return binarySearchUsingPivot(0, arr.length - 1, arr, target);
         }
-        if (arr[pivot] == target){
-            return pivot;
+        if (arr[pivot] == target) {
+            return true;
         }
-        if (target >= arr[0]){
+        if (target >= arr[0]) {
             return binarySearchUsingPivot(0, pivot - 1, arr, target);
         }
         return binarySearchUsingPivot(pivot + 1, arr.length - 1, arr, target);
     }
+
+
+//    Searching in rotated sorted array :-
+//    static int findPivot(int[] arr) {
+//        int start = 0;
+//        int end = arr.length - 1;
+//        while (start <= end) {
+//            int mid = start + (end - start) / 2;
+//            if (mid < end && arr[mid] > arr[mid + 1]) {
+//                return mid;
+//            } else if (mid > start && arr[mid] < arr[mid - 1]) {
+//                return mid - 1;
+//            } else if (arr[mid] < arr[start]) {
+//                end = mid - 1;
+//            } else {
+//                start = mid + 1;
+//            }
+//        }
+//        return -1;
+//    }
+//
+//    static int binarySearchUsingPivot(int start, int end, int[] arr, int target) {
+//        while (start <= end) {
+//            int mid = start + (end - start) / 2;
+//            if (arr[mid] > target) {
+//                end = mid - 1;
+//            } else if (arr[mid] < target) {
+//                start = mid + 1;
+//            } else if (arr[mid] == target) {
+//                return mid;
+//            }
+//        }
+//        return -1;
+//    }
+//
+//    static int searchingUsingPivot(int[] arr, int target){
+//        int pivot = findPivot(arr);
+//        if (pivot == -1){
+//            return binarySearchUsingPivot(0, arr.length - 1, arr, target);
+//        }
+//        if (arr[pivot] == target){
+//            return pivot;
+//        }
+//        if (target >= arr[0]){
+//            return binarySearchUsingPivot(0, pivot - 1, arr, target);
+//        }
+//        return binarySearchUsingPivot(pivot + 1, arr.length - 1, arr, target);
+//    }
 }

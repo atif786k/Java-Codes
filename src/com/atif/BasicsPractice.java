@@ -798,20 +798,42 @@ public class BasicsPractice {
 
 
 //        Q-Maximum population year:--
-        int [][]logs={{1950,1961}, {1960,1971}, {1970,1981}, {1955, 1962}};
-        int []maxPop=new int[logs.length];
-        int maxNum=0;
-        int []maxNums=new int[logs.length];
+//        int [][]logs={{1950,1961}, {1960,1971}, {1970,1981}, {1955, 1962}};
+//        int []maxPop=new int[logs.length];
+//        int maxNum=0;
+//        int []maxNums=new int[logs.length];
+//
+//        for (int i=0; i<logs.length-1; i++){
+//            for (int j=1; j<logs.length; j++){
+//                if (logs[i][1]>logs[j][0]){
+//                    maxPop[i]=logs[j][0];
+//                }
+//            }
+//        }
+//        System.out.println(Arrays.toString(maxPop));
+//        System.out.println(Arrays.toString(maxNums));
 
-        for (int i=0; i<logs.length-1; i++){
-            for (int j=1; j<logs.length; j++){
-                if (logs[i][1]>logs[j][0]){
-                    maxPop[i]=logs[j][0];
-                }
+
+//        Q-Jump game :- ( not solved )
+        int[] arr = {2, 0};
+        System.out.println(canJump(arr));
+    }
+
+    static boolean canJump(int[] arr) {
+        if (arr.length == 1) {
+            return true;
+        }
+        int reachableLast = 0;
+        for (int i = 0; i < arr.length; i++) {
+            if (i > reachableLast) {
+                return false;
+            }
+            reachableLast = Math.max(reachableLast, i + arr[i]);
+            if (reachableLast >= arr.length - 1) {
+                return true;
             }
         }
-        System.out.println(Arrays.toString(maxPop));
-//        System.out.println(Arrays.toString(maxNums));
+        return false;
     }
 }
 
