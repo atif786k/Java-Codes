@@ -240,18 +240,60 @@ public class Searching {
 //        System.out.println(countSmaller(arr));
 
 //        Q-Intersection of two arrays :-
-        int[] num1 = {1, 2, 1};
-        int[] num2 = {2,2};
-
-        System.out.println(Arrays.toString(intersectionII(num1, num2)));
+//        int[] num1 = {1, 2, 1};
+//        int[] num2 = {2, 2};
+//        System.out.println(Arrays.toString(intersectionII(num1, num2)));
         //4,5,9
         //4,4,8,9,9
+
+
+//        Q-Count negative numbers :-
+//        int[][] arr = {
+//                {4, 3, 2, -1},
+//                {3, 2, 1, -1},
+//                {1, 1, -1, -2},
+//                {-1, -1, -2, -3}
+////                {5,1,0},
+////                {-5,-5,-5}
+//        };
+//        System.out.println(countNegatives(arr));
     }
 
-    static int findDuplicate(int[] arr){
+    static int countNegatives(int[][] arr) {
+        int count = 0;
+        int r = 0;
+        int c = arr[0].length - 1;
+        System.out.println(c);
+        while (r < arr.length && c >= 0) {
+            if (arr[r][c] < 0) {
+                count += arr.length - r;
+                c--;
+            } else if (arr[r][c] >= 0) {
+                r++;
+            }
+        }
+        return count;
+    }
+
+    static boolean search2Dmatrix(int[][] arr, int target) {
+        int r = 0;
+        int c = arr[0].length - 1;
+        while (r < arr.length && c >= 0) {
+            if (arr[r][c] == target) {
+                return true;
+            } else if (target < arr[r][c]) {
+                c--;
+            } else {
+                r++;
+            }
+        }
+        return false;
+    }
+
+    static int findDuplicate(int[] arr) {
         HashSet<Integer> res = new HashSet<>();
         for (int i = 0; i < arr.length; i++) {
-            if (res.contains(arr[i])){
+            if (res.contains(arr[i])) {
                 return arr[i];
             }
             res.add(arr[i]);
@@ -284,16 +326,14 @@ public class Searching {
 //                i++;
 //            }
 //        }
-        int i=0;
-        int j=0;
-        while (i<num1.length && j<num2.length){
-            if (num1[i]<num2[j]){
+        int i = 0;
+        int j = 0;
+        while (i < num1.length && j < num2.length) {
+            if (num1[i] < num2[j]) {
                 i++;
-            }
-            else if (num1[i] >num2[j]){
+            } else if (num1[i] > num2[j]) {
                 j++;
-            }
-            else if (num1[i] == num2[j]){
+            } else if (num1[i] == num2[j]) {
                 res.add(num1[i]);
                 i++;
                 j++;
