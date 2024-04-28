@@ -1,7 +1,8 @@
 package com.atif;
 
-import java.util.Arrays;
-import java.util.Scanner;
+import org.jetbrains.annotations.Contract;
+
+import java.util.*;
 //Searching ( Linear and Binary ) Questions :
 
 public class Searching {
@@ -222,14 +223,139 @@ public class Searching {
 //        System.out.println(singleNonDuplicate(arr));
 
 //        Q-Searching in rotated sorted array :-
-        int[] arr = {10, 11, 12, 0, 1, 2, 3};
+//        int[] arr = {10, 11, 12, 0, 1, 2, 3};
 //        int target = 0;
 //        boolean ans = searchingUsingPivot(arr, target);
 //        System.out.println(ans);
 //        System.out.println(findPivotInDuplicate(arr));
 
-        System.out.println(findMinimumInRotatedArray(arr));
+//        System.out.println(findMinimumInRotatedArray(arr));
 
+//        Q-Finding minimum element in the rotated array :-
+//        int[] arr = {1,2,3,4,5,3,1};
+//        System.out.println(findMinInRotatedDuplicateArray(arr));
+
+//        Q-Count smaller num after self :- ( Time limit exceeds )
+//        int[] arr = {5,2,6,1};
+//        System.out.println(countSmaller(arr));
+
+//        Q-Intersection of two arrays :-
+        int[] num1 = {1, 2, 1};
+        int[] num2 = {2,2};
+
+        System.out.println(Arrays.toString(intersectionII(num1, num2)));
+        //4,5,9
+        //4,4,8,9,9
+    }
+
+    static int findDuplicate(int[] arr){
+        HashSet<Integer> res = new HashSet<>();
+        for (int i = 0; i < arr.length; i++) {
+            if (res.contains(arr[i])){
+                return arr[i];
+            }
+            res.add(arr[i]);
+        }
+        return -1;
+    }
+
+    static int[] intersectionII(int[] num1, int[] num2) {
+        Arrays.sort(num1);
+        Arrays.sort(num2);
+        ArrayList<Integer> res = new ArrayList<>();
+
+//        Time limit exceeds :
+//        for (int i = 0; i < num1.length; i++) {
+//            int s = 0;
+//            int e = num2.length - 1;
+//            int target = num1[i];
+//            while (s <= e) {
+//                int mid = s + (e - s) / 2;
+//                if (num2[mid] == target) {
+//                    res.add(target);
+//                    break;
+//                } else if (target < num2[mid]) {
+//                    e = mid - 1;
+//                } else {
+//                    s = mid + 1;
+//                }
+//            }
+//            while (i < num1.length - 1 && num1[i] == num1[i + 1]) {
+//                i++;
+//            }
+//        }
+        int i=0;
+        int j=0;
+        while (i<num1.length && j<num2.length){
+            if (num1[i]<num2[j]){
+                i++;
+            }
+            else if (num1[i] >num2[j]){
+                j++;
+            }
+            else if (num1[i] == num2[j]){
+                res.add(num1[i]);
+                i++;
+                j++;
+            }
+        }
+        int[] arr = new int[res.size()];
+        for (int k = 0; k < res.size(); k++) {
+            arr[k] = res.get(k);
+        }
+        return arr;
+    }
+
+    static int[] intersection(int[] num1, int[] num2) {
+        HashSet<Integer> res1 = new HashSet<>();
+        ArrayList<Integer> res2 = new ArrayList<>();
+        for (int i = 0; i < num1.length; i++) {
+            res1.add(num1[i]);
+        }
+        for (int i = 0; i < num2.length; i++) {
+            if (res1.contains(num2[i])) {
+                res2.add(num2[i]);
+                res1.remove(num2[i]);
+            }
+        }
+        int[] arr = new int[res2.size()];
+        for (int i = 0; i < res2.size(); i++) {
+            arr[i] = res2.get(i);
+        }
+        return arr;
+    }
+
+    //    @Contract(pure = true)
+    static List<Integer> countSmaller(int[] arr) {
+        ArrayList<Integer> count = new ArrayList<Integer>();
+        int counter = 0;
+        for (int i = 0; i < arr.length; i++) {
+            for (int j = i + 1; j < arr.length; j++) {
+                if (arr[i] > arr[j]) {
+                    counter += 1;
+                }
+            }
+            count.add(counter);
+            counter = 0;
+        }
+        return count;
+    }
+
+
+    static int findMinInRotatedDuplicateArray(int[] arr) {
+        int start = 0;
+        int end = arr.length - 1;
+        while (start <= end) {
+            int mid = start + (end - start) / 2;
+            if (arr[mid] > arr[end]) {
+                start = mid + 1;
+            } else if (arr[mid] < arr[start]) {
+                end = mid;
+            } else {
+                end--;
+            }
+        }
+        return arr[start];
     }
 
     static int findMinimumInRotatedArray(int[] arr) {
@@ -245,7 +371,7 @@ public class Searching {
                 return arr[start];
             } else if (arr[start] < arr[mid] && arr[mid] < arr[end] || arr[start] < arr[end]) {
                 return arr[start];
-            } else if (arr[start] < arr[mid]) {
+            } else if (arr[start] < arr[mid] || (arr[start] == arr[mid] && arr[mid] > arr[end])) {
                 start = mid + 1;
             } else {
                 end = mid - 1;

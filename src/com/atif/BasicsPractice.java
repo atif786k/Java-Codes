@@ -815,8 +815,108 @@ public class BasicsPractice {
 
 
 //        Q-Jump game :- ( not solved )
-        int[] arr = {2, 0};
-        System.out.println(canJump(arr));
+//        int[] arr = {2, 0};
+//        System.out.println(canJump(arr));
+
+//        Q-Remove element from array :-
+//        int[] arr = {0, 1, 2, 2, 3, 0, 4, 2};
+//        int val = 2;
+//        System.out.println(Arrays.toString(removeElement(arr, val)));
+
+//        Q-Single Element :-
+//        int[] arr = {2,2,1};
+//        System.out.println(singleNumber(arr));
+
+//        Q-Median of two sorted array :-
+//        int[] arr1 = {1, 3};
+//        int[] arr2 = {2, 4};
+//        System.out.println(medianTwoArr(arr1, arr2));
+
+//        Q-Rotate Image:-
+        int[][] arr = {{5, 1, 9, 11}, {2, 4, 8, 10}, {13, 3, 6, 7}, {15, 14, 12, 16}};
+//        rotateImage(arr);
+//        System.out.println(arr.length-1);
+//        System.out.println(arr[0]);
+        System.out.println("Rotate Image is : " + Arrays.deepToString(rotateImage(arr)));
+//        int y=arr[0].length-1;
+//        System.out.println(y);
+//        y--;
+//        System.out.println(y);
+
+    }
+
+    static int[][] rotateImage(int[][] arr) {
+        int n = arr.length;
+        int m = arr[0].length;
+
+        // Transpose the matrix (swap rows with columns)
+        for (int i = 0; i < n; i++) {
+            for (int j = i + 1; j < m; j++) {
+                int temp = arr[i][j];
+                arr[i][j] = arr[j][i];
+                arr[j][i] = temp;
+            }
+        }
+
+        // Reverse each row to complete the rotation
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < m / 2; j++) {
+                int temp = arr[i][j];
+                arr[i][j] = arr[i][m - 1 - j];
+                arr[i][m - 1 - j] = temp;
+            }
+        }
+        return arr;
+    }
+
+    static double medianTwoArr(int[] arr1, int[] arr2) {
+        double median = 0;
+        int newIndex = 0;
+        int[] arr3 = new int[arr1.length + arr2.length];
+        for (int i = 0; i < arr1.length; i++) {
+            arr3[newIndex] = arr1[i];
+            newIndex++;
+        }
+        for (int j = 0; j < arr2.length; j++) {
+            arr3[newIndex] = arr2[j];
+            newIndex++;
+        }
+        Arrays.sort(arr3);
+        int start = 0;
+        int end = arr3.length - 1;
+        int mid = start + (end - start) / 2;
+        if (arr3.length % 2 != 0) {
+            median = (double) arr3[mid];
+        } else {
+            double sum = (double) (arr3[mid] + arr3[mid + 1]) / 2;
+            median = sum;
+        }
+        return median;
+    }
+
+    static int singleNumber(int[] arr) {
+        int start = 0;
+        int end = arr.length - 1;
+        while (start < end) {
+            if (arr[start] != arr[end]) {
+                end--;
+            } else if (arr[start] == arr[end]) {
+                start++;
+            }
+        }
+        return arr[start];
+    }
+
+    static int[] removeElement(int[] arr, int val) {
+        int count = 0;
+        for (int i = 0; i < arr.length; i++) {
+            if (arr[i] != val) {
+                arr[count] = arr[i];
+                count++;
+            }
+        }
+        System.out.println(count);
+        return arr;
     }
 
     static boolean canJump(int[] arr) {
