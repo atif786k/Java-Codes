@@ -257,6 +257,71 @@ public class Searching {
 ////                {-5,-5,-5}
 //        };
 //        System.out.println(countNegatives(arr));
+
+//        Q-Find square root & validate if perfect square exist or not for x :-
+//        int x = 15;
+//        System.out.println(squareRoot(x));
+//        System.out.println("Is x is perfect square or not : " + isPerfectSqr(x));
+
+        int[] arr = {3,5};
+        System.out.println(specialArray(arr));
+    }
+
+    static int specialArray(int[] arr) {
+        int len = arr.length;
+        int zeroCount = 0;
+//        for (int i = 0; i < len; i++) {
+//            if (arr[i] == 0) {
+//                zeroCount += 1;
+//            }
+//        }
+//        System.out.println("zero count : " + zeroCount);
+//        int numInArr = len - zeroCount;
+//        System.out.println("num in array greater than zero :" + numInArr);
+//
+//        for (int i = 0; i < len; ) {
+//            if (arr[i] == 0) {
+//                i++;
+//            } else if (numInArr <= arr[i]) {
+//                i++;
+//                return numInArr;
+//            }
+//        }
+
+
+        return -1;
+    }
+
+    static boolean isPerfectSqr(int x) {
+        int start = 0;
+        int end = x;
+        while (start <= end) {
+            int mid = start + (end - start) / 2;
+            if (mid * mid == x) {
+                return true;
+            } else if ((long) mid * mid > x) {
+                end = mid - 1;
+            } else {
+                start = mid + 1;
+            }
+        }
+        return false;
+    }
+
+    static int squareRoot(int x) {
+        int start = 0;
+        int end = x;
+        while (start <= end) {
+            int mid = start + (end - start) / 2;
+            if (mid * mid == x) {
+                return Math.round(mid);
+            } else if (mid * mid > x) {
+                end = mid - 1;
+            } else {
+                start = mid + 1;
+            }
+        }
+        return Math.round(end);
     }
 
     static int countNegatives(int[][] arr) {
