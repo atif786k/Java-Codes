@@ -1,5 +1,7 @@
 package com.atif;
 
+import com.sun.security.jgss.GSSUtil;
+
 import java.util.*;
 // Basics and Arrays questions :
 
@@ -833,16 +835,56 @@ public class BasicsPractice {
 //        System.out.println(medianTwoArr(arr1, arr2));
 
 //        Q-Rotate Image:-
-        int[][] arr = {{5, 1, 9, 11}, {2, 4, 8, 10}, {13, 3, 6, 7}, {15, 14, 12, 16}};
+//        int[][] arr = {{5, 1, 9, 11}, {2, 4, 8, 10}, {13, 3, 6, 7}, {15, 14, 12, 16}};
 //        rotateImage(arr);
 //        System.out.println(arr.length-1);
 //        System.out.println(arr[0]);
-        System.out.println("Rotate Image is : " + Arrays.deepToString(rotateImage(arr)));
+//        System.out.println("Rotate Image is : " + Arrays.deepToString(rotateImage(arr)));
 //        int y=arr[0].length-1;
 //        System.out.println(y);
 //        y--;
 //        System.out.println(y);
 
+//        Q-Integer is palindrome or not :-
+//        int x = -121;
+//        System.out.println(isPalindrome(x));
+
+        int[][] arr = {
+                {1, 10, 4, 2},
+                {9, 3, 8, 7},
+                {15, 16, 17, 12}
+        };
+        System.out.println(luckyNumbers(arr));
+
+    }
+
+    static List<Integer> luckyNumbers(int[][] matrix) {
+        ArrayList<Integer> res = new ArrayList<>();
+        int[][] arr = new int[2][matrix.length];
+        for (int i = 0; i < matrix.length; i++) {
+            int store = matrix[i][0];
+            for (int j = 0; j < matrix[i].length; j++) {
+                if (matrix[i][j] < store) {
+                    System.out.print("Minimum num is the row : ");
+                    store = matrix[i][j];
+                }
+            }
+            arr[i][0] = i;
+//            arr[i][1]=j;
+        }
+        return res;
+    }
+
+    static boolean isPalindrome(int x) {
+        String srg = Integer.toString(x);
+        String reverseStr = new String();
+        for (int i = srg.length() - 1; i >= 0; i--) {
+            reverseStr += srg.charAt(i);
+        }
+        if (srg.equals(reverseStr)) {
+            return true;
+        }
+        return false;
     }
 
     static int[][] rotateImage(int[][] arr) {

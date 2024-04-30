@@ -263,8 +263,8 @@ public class Searching {
 //        System.out.println(squareRoot(x));
 //        System.out.println("Is x is perfect square or not : " + isPerfectSqr(x));
 
-        int[] arr = {3,5};
-        System.out.println(specialArray(arr));
+//        int[] arr = {3,5};
+//        System.out.println(specialArray(arr));
     }
 
     static int specialArray(int[] arr) {
