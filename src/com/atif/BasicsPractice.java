@@ -834,28 +834,45 @@ public class BasicsPractice {
 //        int[] arr2 = {2, 4};
 //        System.out.println(medianTwoArr(arr1, arr2));
 
-//        Q-Rotate Image:-
-//        int[][] arr = {{5, 1, 9, 11}, {2, 4, 8, 10}, {13, 3, 6, 7}, {15, 14, 12, 16}};
-//        rotateImage(arr);
-//        System.out.println(arr.length-1);
-//        System.out.println(arr[0]);
-//        System.out.println("Rotate Image is : " + Arrays.deepToString(rotateImage(arr)));
-//        int y=arr[0].length-1;
-//        System.out.println(y);
-//        y--;
-//        System.out.println(y);
-
 //        Q-Integer is palindrome or not :-
 //        int x = -121;
 //        System.out.println(isPalindrome(x));
 
-        int[][] arr = {
-                {1, 10, 4, 2},
-                {9, 3, 8, 7},
-                {15, 16, 17, 12}
-        };
-        System.out.println(luckyNumbers(arr));
+//        Q-Rotate Image :-
+        int[][] arr = {{5, 1, 9, 11},
+                {2, 4, 8, 10},
+                {13, 3, 6, 7},
+                {15, 14, 12, 16}};
+        rotateImage(arr);
+        System.out.println(Arrays.deepToString(arr));
 
+
+//        int[][] arr = {
+//                {1, 10, 4, 2},
+//                {9, 3, 8, 7},
+//                {15, 16, 17, 12}
+//        };
+//        System.out.println(luckyNumbers(arr));
+
+    }
+
+    static void rotateImage(int[][] arr) {
+        int[][] clone = new int[arr[0].length][arr.length];
+        for (int i = 0; i < arr.length; i++) {
+            for (int j = 0; j < arr[i].length; j++) {
+                clone[i][j] = arr[i][j];
+            }
+        }
+        int y=arr[0].length-1;
+        for (int i = 0; i < clone.length; i++) {
+            for (int j = 0; j < clone[i].length; j++) {
+                int temp = clone[i][j];
+                clone[i][j] = arr[j][y];
+                arr[j][y] = temp;
+
+            }
+            y--;
+        }
     }
 
     static List<Integer> luckyNumbers(int[][] matrix) {
@@ -885,30 +902,6 @@ public class BasicsPractice {
             return true;
         }
         return false;
-    }
-
-    static int[][] rotateImage(int[][] arr) {
-        int n = arr.length;
-        int m = arr[0].length;
-
-        // Transpose the matrix (swap rows with columns)
-        for (int i = 0; i < n; i++) {
-            for (int j = i + 1; j < m; j++) {
-                int temp = arr[i][j];
-                arr[i][j] = arr[j][i];
-                arr[j][i] = temp;
-            }
-        }
-
-        // Reverse each row to complete the rotation
-        for (int i = 0; i < n; i++) {
-            for (int j = 0; j < m / 2; j++) {
-                int temp = arr[i][j];
-                arr[i][j] = arr[i][m - 1 - j];
-                arr[i][m - 1 - j] = temp;
-            }
-        }
-        return arr;
     }
 
     static double medianTwoArr(int[] arr1, int[] arr2) {
