@@ -2,6 +2,7 @@ package com.atif;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
 
 public class Sorting {
@@ -162,12 +163,50 @@ public class Sorting {
         return result;
     }
 
+    static void sortArrByParity(int[] arr) {
+        int i = 0;
+        int j = arr.length - 1;
+        while (i < j) {
+            if (arr[i] % 2 == 0) {
+                i++;
+            } else {
+                if (arr[j] % 2 != 0) {
+                    j--;
+                } else {
+                    int temp = arr[i];
+                    arr[i] = arr[j];
+                    arr[j] = temp;
+                    i++;
+                    j--;
+                }
+            }
+        }
+    }
+
+    static int specialArray(int[] arr) {
+        int count = 0;
+        for (int i = 0; i <= arr.length; i++) {
+            for (int j = 0; j < arr.length; j++) {
+                if (arr[j] >= i){
+                    count++;
+                }
+            }
+            if (count == i){
+                return i;
+            }
+            count = 0;
+        }
+        return -1;
+    }
+
     public static void main(String[] args) {
-        int[] arr = {3,4,5,2};
+        int[] arr = {3,9,7,8,3,8,6,6};
+//        int[] arr = {3,3};
 
         insertionSort(arr);
-        System.out.println(Arrays.toString(arr));
-        System.out.println(maximumProduct(arr));
+//        sortArrByParity(arr);
+//        System.out.println(Arrays.toString(arr));
+        System.out.println("Answer is : " + specialArray(arr));
 
     }
 }
