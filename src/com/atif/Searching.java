@@ -1,7 +1,5 @@
 package com.atif;
 
-import org.jetbrains.annotations.Contract;
-
 import java.util.*;
 //Searching ( Linear and Binary ) Questions :
 
@@ -265,31 +263,6 @@ public class Searching {
 
 //        int[] arr = {3,5};
 //        System.out.println(specialArray(arr));
-    }
-
-    static int specialArray(int[] arr) {
-        int len = arr.length;
-        int zeroCount = 0;
-//        for (int i = 0; i < len; i++) {
-//            if (arr[i] == 0) {
-//                zeroCount += 1;
-//            }
-//        }
-//        System.out.println("zero count : " + zeroCount);
-//        int numInArr = len - zeroCount;
-//        System.out.println("num in array greater than zero :" + numInArr);
-//
-//        for (int i = 0; i < len; ) {
-//            if (arr[i] == 0) {
-//                i++;
-//            } else if (numInArr <= arr[i]) {
-//                i++;
-//                return numInArr;
-//            }
-//        }
-
-
-        return -1;
     }
 
     static boolean isPerfectSqr(int x) {

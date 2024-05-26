@@ -1,9 +1,6 @@
 package com.atif;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.List;
+import java.util.*;
 
 public class Sorting {
 
@@ -41,6 +38,16 @@ public class Sorting {
             arr[maxEleInd] = arr[last];
             arr[last] = temp;
         }
+    }
+
+    static int maxElementIndex(int[] arr, int start, int end) {
+        int maxIndex = start;
+        for (int i = 0; i <= end; i++) {
+            if (arr[maxIndex] < arr[i]) {
+                maxIndex = i;
+            }
+        }
+        return maxIndex;
     }
 
     static void insertionSort(int[] arr) {
@@ -113,16 +120,6 @@ public class Sorting {
         return res;
     }
 
-    static int maxElementIndex(int[] arr, int start, int end) {
-        int maxIndex = start;
-        for (int i = 0; i <= end; i++) {
-            if (arr[maxIndex] < arr[i]) {
-                maxIndex = i;
-            }
-        }
-        return maxIndex;
-    }
-
     static boolean containDuplicate(int[] arr) {
         for (int i = 0; i < arr.length - 1; i++) {
             if (arr[i] == arr[i + 1]) {
@@ -187,11 +184,11 @@ public class Sorting {
         int count = 0;
         for (int i = 0; i <= arr.length; i++) {
             for (int j = 0; j < arr.length; j++) {
-                if (arr[j] >= i){
+                if (arr[j] >= i) {
                     count++;
                 }
             }
-            if (count == i){
+            if (count == i) {
                 return i;
             }
             count = 0;
@@ -199,14 +196,116 @@ public class Sorting {
         return -1;
     }
 
+    static double averageSalary(int[] arr) {
+        int employee = arr.length - 2;
+        double avgeSal = 0.0;
+        for (int i = 1; i < arr.length - 1; i++) {
+            avgeSal += arr[i];
+        }
+        return avgeSal / employee;
+    }
+
+    static List<List<Integer>> minimumAbsDifference(int[] arr) {
+        List<List<Integer>> list = new ArrayList<>();
+        int minDiff = arr[1] - arr[0];
+        for (int i = 0; i < arr.length - 1; i++) {
+            if (arr[i + 1] - arr[i] < minDiff) {
+                minDiff = arr[i + 1] - arr[i];
+            }
+        }
+        System.out.println("Absolute minimum distance : " + minDiff);
+        for (int i = 0; i < arr.length - 1; i++) {
+            if (arr[i + 1] - arr[i] == minDiff && i + 1 > i) {
+                list.add(Arrays.asList(arr[i], arr[i + 1]));
+            }
+        }
+        return list;
+    }
+
+    static int heightChecker(int[] arr) {
+        int count = 0;
+        int[] expected = new int[arr.length];
+        for (int i = 0; i < arr.length; i++) {
+            expected[i] = arr[i];
+        }
+        insertionSort(expected);
+        for (int i = 0; i < arr.length; i++) {
+            if (expected[i] != arr[i]) {
+                count++;
+            }
+        }
+        return count;
+    }
+
+    static int[] relativeSortArray(int[] arr1, int[] arr2) {
+        int x = 0;
+        int[] copy = new int[arr1.length];
+        for (int i = 0; i < arr1.length; i++) {
+            copy[i] = arr1[i];
+        }
+        for (int i = 0; i < arr2.length; i++) {
+            int target = arr2[i];
+            for (int j = 0; j < copy.length; j++) {
+                if (target == copy[j]) {
+                    arr1[x] = copy[j];
+                    x++;
+                    copy[j] = Integer.MIN_VALUE;
+                }
+            }
+        }
+        Arrays.sort(copy);
+        for (int i = 0; i < copy.length; i++) {
+            if (copy[i] != Integer.MIN_VALUE) {
+                arr1[x] = copy[i];
+                x++;
+            }
+        }
+        return arr1;
+    }
+
+    static int[] arrayRankTransform(int[] arr) {
+        int[] arr1 = new int[arr.length];
+        int count = 0;
+        for (int i = 0; i < arr.length; i++) {
+            for (int j = 0; j < arr.length; j++) {
+                if (arr[i] >= arr[j] && i != j) {
+                    count++;
+                }
+//                else if(arr[i] == arr[j]){
+//                    count = count;
+//                }
+            }
+
+            int rank = count + 1;
+            arr1[i] = rank;
+            count = 0;
+
+        }
+        return arr1;
+    }
+
+    //    Time Limit Exceeds:- ( Second solution )
+    static int findKthLargest(int[] nums, int k) {
+        ArrayList<Integer> res = new ArrayList<>();
+        for (int i = 0; i < nums.length; i++) {
+            res.add(nums[i]);
+        }
+        for (int i = 1; i < k; i++) {
+            res.remove(Collections.max(res));
+        }
+        int max = Collections.max(res);
+        return max;
+    }
+
+
     public static void main(String[] args) {
-        int[] arr = {3,9,7,8,3,8,6,6};
-//        int[] arr = {3,3};
+        int[] arr1 = {2, 3, 1, 3, 2, 4, 6, 7, 9, 2, 19};
+        int[] arr2 = {2, 1, 4, 3, 9, 6};
+        int[] arr = {3, 2, 1, 5, 6, 4};
 
-        insertionSort(arr);
-//        sortArrByParity(arr);
-//        System.out.println(Arrays.toString(arr));
-        System.out.println("Answer is : " + specialArray(arr));
-
+//        insertionSort(arr);
+//        cyclicSortI(arr);
+        int[] sortedArr = relativeSortArray(arr1, arr2);
+        System.out.println(Arrays.toString(sortedArr));
     }
 }

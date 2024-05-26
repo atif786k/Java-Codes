@@ -5,7 +5,7 @@ import com.sun.security.jgss.GSSUtil;
 import java.util.*;
 // Basics and Arrays questions :
 
-public class BasicsPractice {
+public class ArraysPractice {
     static void max_min(int arr[], int max, int min) {
         for (int i = 0; i < arr.length; i++) {
             if (arr[i] > max) {
@@ -88,7 +88,7 @@ public class BasicsPractice {
             k = k - num.length;
             rotateArray(num, k);
         }
-        System.out.println("Result : " + Arrays.toString(num));
+        System.out.println("Result : " + java.util.Arrays.toString(num));
     }
 
     public static void main(String[] args) {
@@ -844,7 +844,7 @@ public class BasicsPractice {
                 {13, 3, 6, 7},
                 {15, 14, 12, 16}};
         rotateImage(arr);
-        System.out.println(Arrays.deepToString(arr));
+        System.out.println(java.util.Arrays.deepToString(arr));
 
 
 //        int[][] arr = {
@@ -916,7 +916,7 @@ public class BasicsPractice {
             arr3[newIndex] = arr2[j];
             newIndex++;
         }
-        Arrays.sort(arr3);
+        java.util.Arrays.sort(arr3);
         int start = 0;
         int end = arr3.length - 1;
         int mid = start + (end - start) / 2;
