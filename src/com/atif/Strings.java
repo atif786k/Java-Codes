@@ -1,7 +1,8 @@
 package com.atif;
 
+import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Locale;
+import java.util.List;
 
 public class Strings {
 
@@ -162,12 +163,66 @@ public class Strings {
         return true;
     }
 
-    static String longestCommonPrefix(String[] str) {
-        String ouput = "";
-        return ouput;
+    static String reversePrefix(String str, char ch) {
+        StringBuilder ouput = new StringBuilder();
+        int index = str.indexOf(ch);
+        for (int i = index; i >= 0; i--) {
+            ouput.append(str.charAt(i));
+        }
+        for (int i = index + 1; i < str.length(); i++) {
+            ouput.append(str.charAt(i));
+        }
+        return ouput.toString();
+    }
+
+    //    Not solved:
+    static int repeatedStringMatch(String a, String b) {
+        StringBuilder enter = new StringBuilder();
+        int count = 0;
+        while (enter.toString().contains(b)) {
+            if (!enter.toString().contains(b)) {
+                count++;
+            }
+        }
+        return count;
+    }
+
+    //    Not solved:
+    static List<List<String>> printVertically(String s) {
+        List<List<String>> list = new ArrayList<>();
+        String[] str = s.split(" ");
+        int j;
+        for (int i = 0; i < str.length; ) {
+            for (j = 0; j < str[i].length(); ) {
+                System.out.println(str[i].charAt(j));
+                i++;
+            }
+            System.out.println(" ");
+            j++;
+        }
+
+        return list;
+    }
+
+    static void reverseString(char[] s) {
+        int start = 0;
+        int end = s.length - 1;
+        while (start < end) {
+            char st = s[start];
+            s[start] = s[end];
+            s[end] = st;
+            start++;
+            end--;
+        }
     }
 
     public static void main(String[] args) {
+        char[] cha = {'h', 'e', 'l', 'l', 'o'};
+        System.out.println(Arrays.toString(cha));
+        reverseString(cha);
+        System.out.println(Arrays.toString(cha));
+        System.out.println(cha[3]);
+
         String address = "1.1.1.1";
 //        System.out.println(defangIP(address));
 
@@ -197,9 +252,20 @@ public class Strings {
         String moves = "LL";
 //        System.out.println(judgeCircle(moves));
 
-        String a = "Let's take LeetCode contest";
-        String[] str = a.split(" ");
-        System.out.println(str[1].charAt(str[1].length() - 1));
-        System.out.println(reverseWords(a));
+        String g = "Let's take LeetCode contest";
+        String[] str = g.split(" ");
+//        System.out.println(str[1].charAt(str[1].length() - 1));
+//        System.out.println(reverseWords(a));
+
+        char ch = 'd';
+        String words = "abcdefd";
+//        System.out.println(reversePrefix(words, ch));
+
+        String a = "abcd";
+        String b = "cdabcdab";
+//        System.out.println(repeatedStringMatch(a, b));
+
+        String t = "TO BE OR NOT TO BE";
+//        System.out.println(printVertically(t));
     }
 }

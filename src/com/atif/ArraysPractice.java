@@ -844,16 +844,52 @@ public class ArraysPractice {
                 {13, 3, 6, 7},
                 {15, 14, 12, 16}};
         rotateImage(arr);
-        System.out.println(java.util.Arrays.deepToString(arr));
+//        System.out.println(java.util.Arrays.deepToString(arr));
 
 
-//        int[][] arr = {
-//                {1, 10, 4, 2},
-//                {9, 3, 8, 7},
-//                {15, 16, 17, 12}
-//        };
-//        System.out.println(luckyNumbers(arr));
+        int[][] matrix = {
+                {1, 2, 3},
+                {4, 5, 6},
+                {7, 8, 9}
+        };
+        System.out.println(spiralOrder(matrix));
 
+    }
+
+
+    static List<Integer> spiralOrder(int[][] matrix) {
+        List<Integer> result = new ArrayList<>();
+        int row = matrix.length;
+        int col = matrix[0].length;
+        int top = 0;
+        int right = col - 1;
+        int bottom = row - 1;
+        int left = 0;
+        while (top <= bottom && left <= right) {
+            for (int i = left; i <= right; i++) {
+                result.add(matrix[top][i]);
+            }
+            top++;
+            for (int i = top; i <= bottom; i++) {
+                result.add(matrix[i][right]);
+            }
+            right--;
+
+            if (top <= bottom) {
+                for (int i = right; i >= left; i--) {
+                    result.add(matrix[bottom][i]);
+                }
+                bottom--;
+            }
+            if (left <= right) {
+                for (int i = bottom; i >= top; i--) {
+                    result.add(matrix[i][left]);
+                }
+                left++;
+            }
+        }
+
+        return result;
     }
 
     static void rotateImage(int[][] arr) {
@@ -863,7 +899,7 @@ public class ArraysPractice {
                 clone[i][j] = arr[i][j];
             }
         }
-        int y=arr[0].length-1;
+        int y = arr[0].length - 1;
         for (int i = 0; i < clone.length; i++) {
             for (int j = 0; j < clone[i].length; j++) {
                 int temp = clone[i][j];
