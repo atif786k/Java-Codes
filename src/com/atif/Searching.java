@@ -263,6 +263,57 @@ public class Searching {
 
 //        int[] arr = {3,5};
 //        System.out.println(specialArray(arr));
+
+        int target = 3;
+//        System.out.println(reachNumber(target));
+//        double = 11 / 4;
+
+        int[] citations = {0,1,3,5,6};
+        System.out.println(hIndex(citations));
+    }
+
+    static int hIndex(int[] citations){
+        int i = 0;
+        int j = citations.length - 1;
+        int h = 0;
+        while(i <= j){
+            int temp = citations[i];
+            citations[i] = citations[j];
+            citations[j] = temp;
+            i++;
+            j--;
+        }
+        System.out.println(Arrays.toString(citations));
+        for(int x = 0; x < citations.length; x++){
+            if(x > citations[x]){
+                System.out.println("X : "+x);
+                h = x;
+                break;
+            }
+        }
+        return h;
+    }
+
+
+//    Wrong :-
+    static int reachNumber(int target){
+        int steps = 0;
+        int i = 1;
+        int count = 0;
+        while(count <= target){
+            if (count == target){
+                return steps;
+            } else if (count + i < target){
+                count = count + i;
+                steps++;
+                i++;
+            } else if (count + i > target){
+                count = count - i;
+                steps++;
+                i++;
+            }
+        }
+        return -1;
     }
 
     static boolean isPerfectSqr(int x) {

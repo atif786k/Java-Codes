@@ -216,6 +216,27 @@ public class Strings {
         }
     }
 
+    static int appendCharacter(String s, String t) {
+        int sIndex = 0, tIndex = 0;
+        while (sIndex < s.length() && tIndex < t.length()) {
+            if (s.charAt(sIndex) == t.charAt(tIndex)) {
+                tIndex++;
+            }
+            sIndex++;
+        }
+        return t.length() - tIndex;
+    }
+
+    static List<String> commonChars(String[] words) {
+        List<String> result = new ArrayList<>();
+        for (int i = 1; i < words[0].length(); i++) {
+            for (int j = 0; j < words[i].length(); j++) {
+
+            }
+        }
+        return result;
+    }
+
     public static void main(String[] args) {
         char[] cha = {'h', 'e', 'l', 'l', 'o'};
         System.out.println(Arrays.toString(cha));

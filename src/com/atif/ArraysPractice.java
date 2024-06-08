@@ -852,8 +852,69 @@ public class ArraysPractice {
                 {4, 5, 6},
                 {7, 8, 9}
         };
-        System.out.println(spiralOrder(matrix));
+//        System.out.println(spiralOrder(matrix));
+//        System.out.println(Arrays.deepToString(spiralOrderII(3)));
 
+        int[] nums = {5, 0, 0, 0};
+        int k = 3;
+        System.out.println(checkSubArray(nums, k));
+    }
+
+
+    static boolean checkSubArray(int[] nums, int k){
+        int sum = 0;
+        for (int i = 0; i < nums.length; i++) {
+            for (int j = i; j < nums.length; j++) {
+                sum += nums[j];
+                if (sum % k == 0){
+                    return true;
+                }
+            }
+            sum = 0;
+        }
+        return false;
+    }
+
+
+
+    static int[][] spiralOrderII(int n) {
+        int[][] arr = new int[n][n];
+
+        int row = arr.length;
+        int col = arr[0].length;
+        int top = 0;
+        int right = col - 1;
+        int bottom = row - 1;
+        int left = 0;
+        int element = 1;
+        while (top <= bottom && left <= right) {
+            for (int i = left; i <= right; i++) {
+                arr[top][i] = element;
+                element++;
+            }
+            top++;
+            for (int i = top; i <= bottom; i++) {
+                arr[i][right] = element;
+                element++;
+            }
+            right--;
+
+            if (top <= bottom) {
+                for (int i = right; i >= left; i--) {
+                    arr[bottom][i] = element;
+                    element++;
+                }
+                bottom--;
+            }
+            if (left <= right) {
+                for (int i = bottom; i >= top; i--) {
+                    arr[i][left] = element;
+                    element++;
+                }
+                left++;
+            }
+        }
+        return arr;
     }
 
 
