@@ -1,7 +1,6 @@
 package com.atif;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 public class Strings {
@@ -227,22 +226,22 @@ public class Strings {
         return t.length() - tIndex;
     }
 
-    static List<String> commonChars(String[] words) {
-        List<String> result = new ArrayList<>();
-        for (int i = 1; i < words[0].length(); i++) {
-            for (int j = 0; j < words[i].length(); j++) {
+//    static List<String> commonChars(String[] words) {
+//        List<String> result = new ArrayList<>();
+//        for (int i = 0; i < words[0].length(); i++) {
+//            String str = words[0].charAt(i);
+//            result.add(words[0].toString().charAt(i));
+//        }
+//        return result;
+//    }
 
-            }
-        }
-        return result;
-    }
 
     public static void main(String[] args) {
         char[] cha = {'h', 'e', 'l', 'l', 'o'};
-        System.out.println(Arrays.toString(cha));
-        reverseString(cha);
-        System.out.println(Arrays.toString(cha));
-        System.out.println(cha[3]);
+//        System.out.println(Arrays.toString(cha));
+//        reverseString(cha);
+//        System.out.println(Arrays.toString(cha));
+//        System.out.println(cha[3]);
 
         String address = "1.1.1.1";
 //        System.out.println(defangIP(address));
@@ -288,5 +287,31 @@ public class Strings {
 
         String t = "TO BE OR NOT TO BE";
 //        System.out.println(printVertically(t));
+
+        String[] word = {"bella","label","roller"};
+//        for (int i = 0; i < word[0].length(); i++) {
+//            System.out.println(word[0].charAt(i));
+//        }
+        System.out.println('D' - 'A');
+
+    }
+
+    static boolean checkIfPanagram(String str){
+        boolean [] alphabet = new boolean[26];
+        int index = 0;
+        for (int i = 0; i < str.length(); i++) {
+            if ('A' <= str.charAt(i) && str.charAt(i) <= 'Z'){
+                index = str.charAt(i) - 'A';
+            } else if ('a' <= str.charAt(i) && str.charAt(i) <= 'z'){
+                index = str.charAt(i) - 'a';
+            }
+            alphabet[index] = true;
+        }
+        for (int i = 0; i < alphabet.length; i++) {
+            if (alphabet[i] == false){
+                return false;
+            }
+        }
+        return true;
     }
 }

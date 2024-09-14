@@ -857,16 +857,51 @@ public class ArraysPractice {
 
         int[] nums = {5, 0, 0, 0};
         int k = 3;
-        System.out.println(checkSubArray(nums, k));
+//        System.out.println(checkSubArray(nums, k));
+
+
+//        System.out.println(Math.pow(2, 4));
+        int[][] indices = {{0, 1}, {1, 1}};
+        System.out.println(oddCells(2, 3, indices));
+
+    }
+
+    static int oddCells(int m, int n, int[][] indices) {
+        int oddValues = 0;
+        int[][] newMat = new int[m][n];
+        int index = 0;
+        while (index < indices.length) {
+            for (int col = 0; col < newMat[0].length; col++) {
+                newMat[indices[index][0]][col] += 1;
+            }
+            for (int row = 0; row < newMat.length; row++) {
+                newMat[row][indices[index][1]] += 1;
+            }
+            index++;
+        }
+        for (int i = 0; i < newMat.length; i++) {
+            for (int j = 0; j < newMat[i].length; j++) {
+                if (newMat[i][j] % 2 != 0) {
+                    oddValues++;
+                }
+            }
+        }
+        return oddValues;
     }
 
 
-    static boolean checkSubArray(int[] nums, int k){
+    static int romToInt(String s) {
+        int num = 0;
+
+        return num;
+    }
+
+    static boolean checkSubArray(int[] nums, int k) {
         int sum = 0;
         for (int i = 0; i < nums.length; i++) {
             for (int j = i; j < nums.length; j++) {
                 sum += nums[j];
-                if (sum % k == 0){
+                if (sum % k == 0) {
                     return true;
                 }
             }
@@ -874,7 +909,6 @@ public class ArraysPractice {
         }
         return false;
     }
-
 
 
     static int[][] spiralOrderII(int n) {
