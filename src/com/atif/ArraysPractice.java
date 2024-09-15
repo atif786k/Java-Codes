@@ -507,7 +507,7 @@ public class ArraysPractice {
 
 
 //        Q-Transpose the matrix:--
-//        int [][]matrix={{1,2,3},{4,5,6},{7,8,9}};
+//        int [][]matrix={{0,0,0},{0,1,0},{1,1,1}};
 //        int [][]resMatrix=new int[matrix[0].length][matrix.length];
 //        int newIndexI=0;
 //        int newIndexJ=0;
@@ -847,11 +847,11 @@ public class ArraysPractice {
 //        System.out.println(java.util.Arrays.deepToString(arr));
 
 
-        int[][] matrix = {
-                {1, 2, 3},
-                {4, 5, 6},
-                {7, 8, 9}
-        };
+//        int[][] matrix = {
+//                {1, 2, 3},
+//                {4, 5, 6},
+//                {7, 8, 9}
+//        };
 //        System.out.println(spiralOrder(matrix));
 //        System.out.println(Arrays.deepToString(spiralOrderII(3)));
 
@@ -862,8 +862,56 @@ public class ArraysPractice {
 
 //        System.out.println(Math.pow(2, 4));
         int[][] indices = {{0, 1}, {1, 1}};
-        System.out.println(oddCells(2, 3, indices));
+//        System.out.println(oddCells(2, 3, indices));
 
+        int[][] mat = {{0, 1}, {1, 1}};
+        int[][] target = {{1, 0}, {0, 1}};
+        System.out.println(findRotation(mat, target));
+
+    }
+
+    static boolean findRotation(int[][] mat, int[][] target) {
+//        int[][] clone = new int[mat[0].length][mat.length];
+        int rotation = 0;
+        if (Arrays.deepEquals(mat, target)) {
+            return true;
+        } else {
+            while (rotation < 3) {
+//               <-- Both methods are working -->
+//                for (int i = 0; i < mat.length; i++) {
+//                    for (int j = 0; j < mat[i].length; j++) {
+//                        clone[i][j] = mat[i][j];
+//                    }
+//                }
+//                int row = 0;
+//                int col = mat[0].length - 1;
+//                for (int i = 0; i < clone.length; i++) {
+//                    for (int j = 0; j < clone[i].length; j++) {
+//                        mat[row][col] = clone[i][j];
+//                        row++;
+//                    }
+//                    col--;
+//                    row = 0;
+//                }
+                int[][] clone = new int[mat[0].length][mat.length];
+                int row = 0;
+                int col = mat[0].length - 1;
+                for (int i = 0; i < mat.length; i++) {
+                    for (int j = 0; j < mat[i].length; j++) {
+                        clone[row][col] = mat[i][j];
+                        row++;
+                    }
+                    col--;
+                    row = 0;
+                }
+                mat = clone;
+                if (Arrays.deepEquals(mat, target)) {
+                    return true;
+                }
+                rotation++;
+            }
+        }
+        return false;
     }
 
     static int oddCells(int m, int n, int[][] indices) {
