@@ -296,6 +296,55 @@ public class Strings {
 
     }
 
+//    <--- Good Question --->
+    static boolean checkPalindromeFormation(String a, String b) {
+        return matchingLetters(a, b) || matchingLetters(b, a);
+    }
+    static boolean matchingLetters(String a, String b){
+        int i = 0;
+        int j = a.length() - 1;
+        while(i < j && a.charAt(i) == b.charAt(j)){
+            i++;
+            j--;
+        }
+        if(i >= j){ return true; }
+        return isPalindrome(a, i, j) || isPalindrome(b, i, j);
+    }
+    static boolean isPalindrome(String s, int i, int j){
+        while(i < j){
+            if(s.charAt(i) != s.charAt(j)){
+                return false;
+            }
+            i++;
+            j--;
+        }
+        return true;
+    }
+
+
+//   <--- Hard Question IMPORTANT --->
+    static boolean isValid(String str){
+        boolean dig=false, exp=false, decimal=false;
+        for (int i = 0; i < str.length(); i++) {
+            char ch = str.charAt(i);
+            if (ch >= '0' && ch <= '9'){
+                dig = true;
+            } else if(ch == '-' || ch == '+'){
+                if (i > 0 && str.charAt(i-1) != 'e' && str.charAt(i-1) != 'E'){ return false; }
+            } else if(ch == '.'){
+                if (exp || decimal){ return false; }
+                decimal = true;
+            } else if(ch == 'e' || ch == 'E'){
+                if(exp || !dig){ return false; }
+                exp = true;
+                dig = false;
+            } else {
+                return false;
+            }
+        }
+        return dig;
+    }
+
     static boolean checkIfPanagram(String str){
         boolean [] alphabet = new boolean[26];
         int index = 0;

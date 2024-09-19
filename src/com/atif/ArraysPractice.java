@@ -866,8 +866,36 @@ public class ArraysPractice {
 
         int[][] mat = {{0, 1}, {1, 1}};
         int[][] target = {{1, 0}, {0, 1}};
-        System.out.println(findRotation(mat, target));
+//        System.out.println(findRotation(mat, target));
 
+        int[][] matrix = {{1, 10, 4, 2}, {9, 3, 8, 7}, {15, 16, 17, 12}};
+        System.out.println(luckyNumbers(matrix));
+
+    }
+
+    static List<Integer> luckyNumbers(int[][] matrix) {
+        List<Integer> luckyNums = new ArrayList<>();
+        for (int i = 0; i < matrix.length; i++) {
+            int rowMinNum = matrix[i][0];
+            int colIndex = 0;
+            for (int j = 0; j < matrix[i].length; j++) {
+                if (matrix[i][j] < rowMinNum) {
+                    rowMinNum = matrix[i][j];
+                    colIndex = j;
+                }
+            }
+            boolean isMax = true;
+            for (int k = 0; k < matrix.length; k++) {
+                if (rowMinNum < matrix[k][colIndex]) {
+                    isMax = false;
+                    break;
+                }
+            }
+            if (isMax) {
+                luckyNums.add(rowMinNum);
+            }
+        }
+        return luckyNums;
     }
 
     static boolean findRotation(int[][] mat, int[][] target) {
@@ -1054,23 +1082,6 @@ public class ArraysPractice {
         }
     }
 
-    static List<Integer> luckyNumbers(int[][] matrix) {
-        ArrayList<Integer> res = new ArrayList<>();
-        int[][] arr = new int[2][matrix.length];
-        for (int i = 0; i < matrix.length; i++) {
-            int store = matrix[i][0];
-            for (int j = 0; j < matrix[i].length; j++) {
-                if (matrix[i][j] < store) {
-                    System.out.print("Minimum num is the row : ");
-                    store = matrix[i][j];
-                }
-            }
-            arr[i][0] = i;
-//            arr[i][1]=j;
-        }
-        return res;
-    }
-
     static boolean isPalindrome(int x) {
         String srg = Integer.toString(x);
         String reverseStr = new String();
@@ -1150,6 +1161,3 @@ public class ArraysPractice {
         return false;
     }
 }
-
-
-

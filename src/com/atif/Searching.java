@@ -268,15 +268,88 @@ public class Searching {
 //        System.out.println(reachNumber(target));
 //        double = 11 / 4;
 
-        int[] citations = {0,1,3,5,6};
-        System.out.println(hIndex(citations));
+        int[] citations = {0, 1, 3, 5, 6};
+//        System.out.println(hIndex(citations));
     }
 
-    static int hIndex(int[] citations){
+    static List<List<Integer>> fourSum(int[] nums, int target) {
+        List<List<Integer>> res = new ArrayList<>();
+        Arrays.sort(nums);
+        for (int i = 0; i < nums.length; i++) {
+            if (i > 0 && nums[i] == nums[i - 1]) {
+                continue;
+            }
+            for (int j = i + 1; j < nums.length; j++) {
+                if (j != i + 1 && nums[j] == nums[j - 1]) {
+                    continue;
+                }
+                int k = j + 1;
+                int l = nums.length - 1;
+                while (k < l) {
+                    int sum = nums[i] + nums[j] + nums[k] + nums[l];
+                    if (sum == target) {
+                        res.add(Arrays.asList(nums[i], nums[j], nums[k], nums[l]));
+                        k++;
+                        l--;
+
+                        while (k < l && nums[k] == nums[k - 1]) {
+                            k++;
+                        }
+                        while (k < l && nums[l] == nums[l + 1]) {
+                            l--;
+                        }
+                    } else if (sum < target) {
+                        k++;
+                    } else {
+                        l--;
+                    }
+                }
+            }
+        }
+        return res;
+    }
+
+    static List<List<Integer>> threeSum(int[] nums) {
+        List<List<Integer>> res = new ArrayList<>();
+        Arrays.sort(nums);
+        for (int i = 0; i < nums.length; i++) {
+            if (i > 0 && nums[i] == nums[i - 1]) {
+                continue;
+            }
+            int j = i + 1;
+            int k = nums.length - 1;
+            while (j < k) {
+                int total = nums[i] + nums[j] + nums[k];
+                if (total > 0) {
+                    k--;
+                } else if (total < 0) {
+                    j++;
+                } else {
+                    res.add(Arrays.asList(nums[i], nums[j], nums[k]));
+                    j++;
+                    while (nums[j] == nums[j - 1] && j < k) {
+                        j++;
+                    }
+                }
+            }
+        }
+        return res;
+    }
+
+    static int arrangingCoins(int n) {
+        int row = 0;
+        while (n > 0 && n > row) {
+            row++;
+            n = n - row;
+        }
+        return row;
+    }
+
+    static int hIndex(int[] citations) {
         int i = 0;
         int j = citations.length - 1;
         int h = 0;
-        while(i <= j){
+        while (i <= j) {
             int temp = citations[i];
             citations[i] = citations[j];
             citations[j] = temp;
@@ -284,9 +357,9 @@ public class Searching {
             j--;
         }
         System.out.println(Arrays.toString(citations));
-        for(int x = 0; x < citations.length; x++){
-            if(x > citations[x]){
-                System.out.println("X : "+x);
+        for (int x = 0; x < citations.length; x++) {
+            if (x > citations[x]) {
+                System.out.println("X : " + x);
                 h = x;
                 break;
             }
@@ -295,19 +368,19 @@ public class Searching {
     }
 
 
-//    Wrong :-
-    static int reachNumber(int target){
+    //    Wrong :-
+    static int reachNumber(int target) {
         int steps = 0;
         int i = 1;
         int count = 0;
-        while(count <= target){
-            if (count == target){
+        while (count <= target) {
+            if (count == target) {
                 return steps;
-            } else if (count + i < target){
+            } else if (count + i < target) {
                 count = count + i;
                 steps++;
                 i++;
-            } else if (count + i > target){
+            } else if (count + i > target) {
                 count = count - i;
                 steps++;
                 i++;
@@ -455,20 +528,20 @@ public class Searching {
     }
 
     //    @Contract(pure = true)
-    static List<Integer> countSmaller(int[] arr) {
-        ArrayList<Integer> count = new ArrayList<Integer>();
-        int counter = 0;
-        for (int i = 0; i < arr.length; i++) {
-            for (int j = i + 1; j < arr.length; j++) {
-                if (arr[i] > arr[j]) {
-                    counter += 1;
-                }
-            }
-            count.add(counter);
-            counter = 0;
-        }
-        return count;
-    }
+//    static List<Integer> countSmaller(int[] arr) {
+//        ArrayList<Integer> count = new ArrayList<Integer>();
+//        int counter = 0;
+//        for (int i = 0; i < arr.length; i++) {
+//            for (int j = i + 1; j < arr.length; j++) {
+//                if (arr[i] > arr[j]) {
+//                    counter += 1;
+//                }
+//            }
+//            count.add(counter);
+//            counter = 0;
+//        }
+//        return count;
+//    }
 
 
     static int findMinInRotatedDuplicateArray(int[] arr) {
